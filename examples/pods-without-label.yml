@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-without-label
+  namespace: k8s-pod-logger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-without-label
+  template:
+    metadata:
+      labels:
+        app: example-without-label
+    spec:
+      containers:
+      - name: example-without-label
+        image: alpine:latest
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello example-without-label; sleep 10;done"]
